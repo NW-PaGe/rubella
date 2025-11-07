@@ -1,0 +1,100 @@
+# Washington-specific configuration for Rubella Nextstrain builds
+# North America–anchored, Washington-focused, with global genotype reference sequences retained
+
+## Washington-specific configuration for Rubella Nextstrain builds
+# North America–anchored, Washington-focused, with global genotype references retained
+
+# ---- Subsampling scheme ----
+# Anchored to North America, includes all WA sequences + light context
+subsampling:
+  wa_all:
+    query: '(country == "USA") & (division == "Washington")'
+    # keep all WA by default; cap later if this grows large
+    max_sequences: 10000
+
+  # USA (non-WA) context
+  usa_context:
+    query: '(country == "USA") & (division != "Washington")'
+    group_by: ["division", "year"]
+    sequences_per_group: 5
+    max_sequences: 500
+
+  # North America context (outside USA)
+  na_context:
+    query: '(region == "North America") & (country != "USA")'
+    group_by: ["country", "year"]
+    sequences_per_group: 5
+    max_sequences: 400
+
+  # Light global context
+  global_refs:
+    query: '(region != "North America")'
+    group_by: ["region", "year"]
+    sequences_per_group: 3
+    max_sequences: 300
+
+# ---- Filtering ----
+# Keep North America by default (WA + regional context).
+# Global genotype references are still pulled via the include files in defaults/.
+filter:
+  query: 'region == "North America"'
+  group_by: "country year"
+  genome:
+    min_length: 7000
+    sequences_per_group: 20
+  E1:
+    min_length: 700
+    sequences_per_group: 200
+
+# ---- File pointers (used by export and colors) ----
+files:
+  auspice_config: "washington/auspice_config.json"
+  description: "defaults/description.md"
+  colors: "data/colors.tsv"
+  lat_longs: "data/lat_longs.tsv"
+  exclude: "defaults/dropped_strains.txt"
+
+# ---- Build-specific settings ----
+# The pipeline’s filter rules already pass the appropriate include lists per build.
+strain_id_field: "accession"
+
+builds:
+  E1:
+    subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
+    auspice_title: "Real-time tracking of Rubella virus E1 gene evolution — Washington state"
+    clades: "defaults/clades_E1.tsv"
+    genemap: "defaults/genemap_E1.gff"
+    include: "defaults/include_strains_E1.txt"
+    reference: "defaults/reference_E1.fasta"
+
+  genome:
+    subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
+    auspice_title: "Real-time tracking of Rubella virus full genome evolution — Washington state"
+    clades: "defaults/clades_genome.tsv"
+    genemap: "defaults/genemap_genome.gff"
+    include: "defaults/include_strains_genome.txt"
+    reference: "defaults/reference_genome.fasta"
+
+# ---- Refinement ----
+refine:
+  coalescent: "opt"
+  date_inference: "marginal"
+  clock_rate: 0.0006
+  clock_filter_iqd: 4
+
+# ---- Ancestral reconstruction ----
+ancestral:
+  inference: "joint"
+
+# ---- Traits (add division so Auspice can filter/color Washington) ----
+traits:
+  columns: ["region", "country", "division"]
+  confidence: true
+
+# ---- Tip frequencies ----
+tip_frequencies:
+  min_date: "2010-01-01"
+  narrow_bandwidth: 0.083   # ~1 month
+  wide_bandwidth: 0.250     # ~3 months
+  proportion_wide: 0
+  pivot_interval: 1

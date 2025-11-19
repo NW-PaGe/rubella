@@ -1,19 +1,20 @@
 {
+  "title": "Genomic epidemiology of rubella virus — Washington-focused",
   "maintainers": [
     { "name": "Alena Schroeder, MPH", "url": "https://github.com/NW-PaGe/rubella" }
   ],
   "data_provenance": [
     { "name": "GenBank", "url": "https://www.ncbi.nlm.nih.gov/genbank/" }
   ],
-  "build_url": "https://github.com/nextstrain/rubella",
+  "build_url": "https://github.com/NW-PaGe/rubella",
 
   "colorings": [
-    { "key": "division",          "title": "US division",                         "type": "categorical" },
-    { "key": "country",           "title": "Country",                              "type": "categorical" },
-    { "key": "region",            "title": "Region",                               "type": "categorical" },
-    { "key": "clade",             "title": "Genotype (Nextclade)",                 "type": "categorical" },
-    { "key": "genbank_genotype",  "title": "Genotype (GenBank annotation)",        "type": "categorical" },
-    { "key": "who_reference",     "title": "WHO Reference Strain",                 "type": "categorical" }
+    { "key": "division",         "title": "US division",                      "type": "categorical" },
+    { "key": "country",          "title": "Country",                          "type": "categorical" },
+    { "key": "region",           "title": "Region",                           "type": "categorical" },
+    { "key": "clade",            "title": "Genotype (Nextclade)",             "type": "categorical" },
+    { "key": "genbank_genotype", "title": "Genotype (GenBank annotation)",    "type": "categorical" },
+    { "key": "who_reference",    "title": "WHO reference strain",             "type": "categorical" }
   ],
 
   "geo_resolutions": ["division", "country", "region"],
@@ -21,10 +22,11 @@
   "display_defaults": {
     "color_by": "clade",
     "map_triplicate": true,
-    "distance_measure": "num_date"
+    "distance_measure": "num_date",
+    "branch_label": "mutations"
   },
 
   "filters": ["division", "country", "region", "clade", "genbank_genotype", "author"],
-  "panels": ["tree", "map", "entropy", "frequencies"],
+  "panels": ["tree", "map", "frequencies"],
   "metadata_columns": ["author"]
 }

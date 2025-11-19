@@ -61,7 +61,9 @@ strain_id_field: "accession"
 builds:
   E1:
     subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
-    auspice_title: "Real-time tracking of Rubella virus E1 gene evolution — Washington state"
+    auspice_title: "Genomic Epidemiology of Rubella virus — Washington-focused (E1 gene)"
+    filter:
+      min_date: "2000-01-01"
     clades: "defaults/clades_E1.tsv"
     genemap: "defaults/genemap_E1.gff"
     include: "defaults/include_strains_E1.txt"
@@ -69,7 +71,9 @@ builds:
 
   genome:
     subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
-    auspice_title: "Real-time tracking of Rubella virus full genome evolution — Washington state"
+    auspice_title: "Genomic Epidemiology of Rubella virus — Washington-focused (genome)"
+    filter:
+      min_date: "2000-01-01"
     clades: "defaults/clades_genome.tsv"
     genemap: "defaults/genemap_genome.gff"
     include: "defaults/include_strains_genome.txt"

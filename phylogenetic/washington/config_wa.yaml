@@ -6,45 +6,101 @@
 
 # ---- Subsampling scheme ----
 # Anchored to North America, includes all WA sequences + light context
-subsampling:
-  wa_all:
-    query: '(country == "USA") & (division == "Washington")'
-    # keep all WA by default; cap later if this grows large
-    max_sequences: 10000
-
-  # USA (non-WA) context
-  usa_context:
-    query: '(country == "USA") & (division != "Washington")'
-    group_by: ["division", "year"]
-    sequences_per_group: 5
-    max_sequences: 500
-
-  # North America context (outside USA)
-  na_context:
-    query: '(region == "North America") & (country != "USA")'
-    group_by: ["country", "year"]
-    sequences_per_group: 5
-    max_sequences: 400
-
-  # Light global context
-  global_refs:
-    query: '(region != "North America")'
-    group_by: ["region", "year"]
-    sequences_per_group: 3
-    max_sequences: 300
-
-# ---- Filtering ----
-# Keep North America by default (WA + regional context).
-# Global genotype references are still pulled via the include files in defaults/.
-filter:
-  query: 'region == "North America"'
-  group_by: "country year"
+custom_subsample:
   genome:
-    min_length: 7000
-    sequences_per_group: 20
+    samples:
+      wa_all:
+        query: '(country == "USA") & (division == "Washington")'
+        # keep all WA by default; cap later if this grows large
+        max_sequences: 10000
+        min_length: 7000
+        min_date: "1990-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_genome.txt"
+
+      # USA (non-WA) context
+      usa_context:
+        query: '(country == "USA") & (division != "Washington")'
+        group_by:
+          - division
+          - year
+        sequences_per_group: 20
+        min_length: 7000
+        min_date: "1990-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_genome.txt"
+
+      # North America context (outside USA)
+      na_context:
+        query: '(region == "North America") & (country != "USA")'
+        group_by:
+          - country
+          - year
+        sequences_per_group: 20
+        min_length: 7000
+        min_date: "1990-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_genome.txt"
+
+      # Light global context
+      global_refs:
+        query: '(region != "North America")'
+        group_by:
+          - region
+          - year
+        sequences_per_group: 20
+        min_length: 7000
+        min_date: "1990-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_genome.txt"
+
   E1:
-    min_length: 700
-    sequences_per_group: 200
+    samples:
+      wa_all:
+        query: '(country == "USA") & (division == "Washington")'
+        # keep all WA by default; cap later if this grows large
+        max_sequences: 10000
+        min_length: 700
+        min_date: "2000-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_E1.txt"
+
+      # USA (non-WA) context
+      usa_context:
+        query: '(country == "USA") & (division != "Washington")'
+        group_by:
+          - division
+          - year
+        sequences_per_group: 5
+        min_length: 700
+        min_date: "2000-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_E1.txt"
+
+      # North America context (outside USA)
+      na_context:
+        query: '(region == "North America") & (country != "USA")'
+        group_by:
+          - country
+          - year
+        sequences_per_group: 5
+        min_length: 700
+        min_date: "2000-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_E1.txt"
+
+      # Light global context
+      global_refs:
+        query: '(region != "North America")'
+        group_by:
+          - region
+          - year
+        sequences_per_group: 20
+        min_length: 700
+        min_date: "2000-01-01"
+        exclude: "defaults/dropped_strains.txt"
+        include: "defaults/include_strains_E1.txt"
+
 
 # ---- File pointers (used by export and colors) ----
 files:
@@ -62,8 +118,6 @@ builds:
   E1:
     subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
     auspice_title: "Genomic Epidemiology of Rubella virus — Washington-focused (E1 gene)"
-    filter:
-      min_date: "2000-01-01"
     clades: "defaults/clades_E1.tsv"
     genemap: "defaults/genemap_E1.gff"
     include: "defaults/include_strains_E1.txt"
@@ -72,8 +126,6 @@ builds:
   genome:
     subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
     auspice_title: "Genomic Epidemiology of Rubella virus — Washington-focused (genome)"
-    filter:
-      min_date: "2000-01-01"
     clades: "defaults/clades_genome.tsv"
     genemap: "defaults/genemap_genome.gff"
     include: "defaults/include_strains_genome.txt"

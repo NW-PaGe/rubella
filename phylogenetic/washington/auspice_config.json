@@ -1,7 +1,7 @@
 {
   "title": "Genomic epidemiology of rubella virus — Washington-focused",
   "maintainers": [
-    { "name": "Alena Schroeder, MPH", "url": "https://github.com/NW-PaGe/rubella" }
+    { "name": "WA DOH Molecular Epidemiology Program", "url": "https://doh.wa.gov/about-us/executive-offices/health-and-science/disease-control-and-health-statistics/communicable-disease-epidemiology/molecular-epidemiology-program"}
   ],
   "data_provenance": [
     { "name": "GenBank", "url": "https://www.ncbi.nlm.nih.gov/genbank/" }

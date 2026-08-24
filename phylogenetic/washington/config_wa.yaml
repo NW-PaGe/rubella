@@ -43,7 +43,7 @@ custom_subsample:
         include: "defaults/include_strains_genome.txt"
 
       # Light global context
-      global_refs:
+      global_context:
         query: '(region != "North America")'
         group_by:
           - region
@@ -90,7 +90,7 @@ custom_subsample:
         include: "defaults/include_strains_E1.txt"
 
       # Light global context
-      global_refs:
+      global_context:
         query: '(region != "North America")'
         group_by:
           - region

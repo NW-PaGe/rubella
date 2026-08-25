@@ -152,7 +152,7 @@ The build uses WHO-recommended genotype reference sequences and the upstream Nex
 
 - **Sequence quality thresholds**
    - These lengths remove partially reported, fragmentary, or low-coverage sequences. If you want to include smaller length sequences, you should first change the `divergence-units` (`refine rule`) from `mutations` to `mutations-per-site`.
-      - Genome: minimum length 8500 bp
+      - Genome: minimum length 9500 bp
       - E1: minimum length 700 bp
 
 - **Known-problematic sequences**

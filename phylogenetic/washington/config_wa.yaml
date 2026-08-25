@@ -116,7 +116,7 @@ strain_id_field: "accession"
 
 builds:
   E1:
-    subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
+    subsampling_scheme: [wa_all, usa_context, na_context, global_context]
     auspice_title: "Genomic Epidemiology of Rubella virus — Washington-focused (E1 gene)"
     clades: "defaults/clades_E1.tsv"
     genemap: "defaults/genemap_E1.gff"
@@ -124,7 +124,7 @@ builds:
     reference: "defaults/reference_E1.fasta"
 
   genome:
-    subsampling_scheme: [wa_all, usa_context, na_context, global_refs]
+    subsampling_scheme: [wa_all, usa_context, na_context, global_context]
     auspice_title: "Genomic Epidemiology of Rubella virus — Washington-focused (genome)"
     clades: "defaults/clades_genome.tsv"
     genemap: "defaults/genemap_genome.gff"

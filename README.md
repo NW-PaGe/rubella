@@ -107,15 +107,15 @@ max_sequences: 10000`
       This guarantees that WA sequences are never dropped due to down-sampling heuristics.
 
 - **Preserve U.S. context without overshadowing WA**
-   - U.S. (non-WA) sequences are sampled lightly by **division-year**, with only 5 sequences per group.
+   - U.S. (non-WA) sequences are sampled lightly by **division-year** (20 sequences per division-year for genome build, 5 for E1).
    - This provides enough background to distinguish single introductions from broader U.S. circulation.
 
 - **Preserve North America context**
    - Adds additional context from Canada, Mexico, and the Caribbean.
-   - Also sampled lightly (5 per country-year) to avoid overwhelming WA focal data.
+   - Also sampled lightly (20 per country-year for genome build, 5 for E1 build) to avoid overwhelming WA focal data.
 
 - **Include limited global context**
-   - Global sequences are sampled at 3 per region-year.
+   - Global sequences are sampled at 20 per region-year for genome & E1 build.
    - The goal is not to recreate the global rubella build but to ensure:
       - genotype diversity (1E, 1G, 2B, etc.),
       - placement of WA samples within global lineages,
@@ -126,7 +126,7 @@ max_sequences: 10000`
    - distorts the tree,
    - adds irrelevant historical branches,
    - hides recent introduction patterns.  
-   - Therefore, each build applies: `min_date: "2000-01-01"` 
+   - Therefore, the E1 build applies: `min_date: "2000-01-01"` & the genome build applies: `min_date: "1990-01-01"`
    - The effect of this is that it drops early historical sequences not relevant to current U.S./WA elimination-phase epidemiology while retaining recent genotype diversity and modern CRS-relevant lineages.
    
    This structure mirrors the logic used in the WA measles and mumps builds: retain WA, enrich near neighbors, lightly sample globally.
@@ -151,8 +151,8 @@ The build uses WHO-recommended genotype reference sequences and the upstream Nex
       - correct visual interpretation of WA sample placement.
 
 - **Sequence quality thresholds**
-   - These lengths remove partially reported, fragmentary, or low-coverage sequences.
-      - Genome: minimum length 7000 bp
+   - These lengths remove partially reported, fragmentary, or low-coverage sequences. If you want to include smaller length sequences, you should first change the `divergence-units` (`refine rule`) from `mutations` to `mutations-per-site`.
+      - Genome: minimum length 8500 bp
       - E1: minimum length 700 bp
 
 - **Known-problematic sequences**

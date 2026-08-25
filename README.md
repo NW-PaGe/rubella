@@ -168,7 +168,7 @@ Some high-level features and capabilities specific to this build include:
 
    This build is designed to keep all high-quality Washington sequences (genome and E1), ensuring that local epidemiologic signals are never lost during subsampling. This is essential for case investigation, importation assessment, and elimination-related work.
 
-- **North America–anchored contextual sampling**
+- **North America–anchored contextual sampling** 
 
    The subsampling strategy prioritizes U.S. and North American sequences to provide meaningful regional context without overwhelming the build with oversampled countries (e.g., Japan). This assists in identifying likely sources of importation and understanding regional circulation patterns.
 

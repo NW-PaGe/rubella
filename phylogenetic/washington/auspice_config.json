@@ -9,7 +9,7 @@
   "build_url": "https://github.com/NW-PaGe/rubella",
 
   "colorings": [
-    { "key": "division",         "title": "US division",                      "type": "categorical" },
+    { "key": "division",         "title": "division",                      "type": "categorical" },
     { "key": "country",          "title": "Country",                          "type": "categorical" },
     { "key": "region",           "title": "Region",                           "type": "categorical" },
     { "key": "clade",            "title": "Genotype (Nextclade)",             "type": "categorical" },

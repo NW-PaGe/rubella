@@ -48,7 +48,7 @@ custom_subsample:
         group_by:
           - region
           - year
-        sequences_per_group: 20
+        sequences_per_group: 40
         min_length: 9500
         min_date: "1990-01-01"
         exclude: "defaults/dropped_strains.txt"
@@ -71,7 +71,7 @@ custom_subsample:
         group_by:
           - division
           - year
-        sequences_per_group: 5
+        sequences_per_group: 20
         min_length: 700
         min_date: "2000-01-01"
         exclude: "defaults/dropped_strains.txt"
@@ -83,7 +83,7 @@ custom_subsample:
         group_by:
           - country
           - year
-        sequences_per_group: 5
+        sequences_per_group: 20
         min_length: 700
         min_date: "2000-01-01"
         exclude: "defaults/dropped_strains.txt"
@@ -95,7 +95,7 @@ custom_subsample:
         group_by:
           - region
           - year
-        sequences_per_group: 20
+        sequences_per_group: 40
         min_length: 700
         min_date: "2000-01-01"
         exclude: "defaults/dropped_strains.txt"

@@ -4,6 +4,13 @@ We use this CHANGELOG to document breaking changes, bug fixes, and config value 
 
 ## 2026
 
+* 09 Oct 2026: Increased tree size to address high variation in clock rates between builds. This was accomplished by increasing the following sequences_per_group sizes:
+  * genome global: 20 --> 40 (does not change tree size because of limited all genome sequences)
+  * E1 USA: 5 --> 20
+  * E1 North America: 5 --> 20
+  * E1 global: 20 --> 40
+This results in ~ 400 additional sequences (~40% increase) in the E1 tree
+
 * 25 Aug 2026: Increased min length for genome build from 7000 to 9500. After accounting for other filtering, this drops 2 additional sequences.
 
 * 05 Aug 2026: Implemented Contextual subsampling. Results in the following changes to seqeunce counts:
